@@ -82,6 +82,7 @@
 
       "plugins/plugin-109" = "clock";
       "plugins/plugin-109/digital-date-font" = "Helvetica 8";
+      "plugins/plugin-109/digital-time-font" = "Helvetica 8";
     };
 
     xfce4-desktop = {
