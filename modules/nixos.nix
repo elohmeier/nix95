@@ -53,5 +53,5 @@
     pkgs.xfce.xfce4-pulseaudio-plugin
     pkgs.xsel
   ];
-  fonts.fonts = [ pkgs.chicago95 ];
+  fonts.packages = [ pkgs.chicago95 ];
 }
