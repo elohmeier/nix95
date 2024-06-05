@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
   };
 
   outputs = { self, nixpkgs, ... }:
@@ -14,8 +14,8 @@
       forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
     in
     {
-      homeManagerModules = {
-        default = self.homeManagerModules.nix95;
+      homeModules = {
+        default = self.homeModules.nix95;
         nix95 = import ./modules/home.nix;
       };
 
