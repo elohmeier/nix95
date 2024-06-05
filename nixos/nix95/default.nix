@@ -1,4 +1,5 @@
 { lib, pkgs, ... }: {
+
   services.xserver = {
     enable = true;
     desktopManager = {
@@ -42,7 +43,7 @@
   };
   boot.plymouth = {
     enable = true;
-    logo = ../assets/Microsoft_Windows_95_wordmark.png;
+    logo = ../../assets/Microsoft_Windows_95_wordmark.png;
   };
   environment.systemPackages = [
     pkgs.chicago95
