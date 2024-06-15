@@ -87,7 +87,7 @@
 
     xfce4-desktop = {
       "backdrop/screen0/monitor0/workspace0/rgba1" = [ 0.000000 0.501961 0.501961 1.000000 ];
-      "backdrop/screen0/monitor0/workspace0/last-image" = "${../assets/win95wp.png}";
+      "backdrop/screen0/monitor0/workspace0/last-image" = "${../../assets/win95wp.png}";
     };
   };
 
@@ -110,7 +110,7 @@
 
   home.activation.xfconfWallpaper = lib.hm.dag.entryAfter [ "installPackages" ] ''
     ${pkgs.xfce.xfconf}/bin/xfconf-query -c xfce4-desktop -l | grep last-image | while read path; do
-      ${pkgs.xfce.xfconf}/bin/xfconf-query -c xfce4-desktop -p $path -s "${../assets/win95wp.png}"
+      ${pkgs.xfce.xfconf}/bin/xfconf-query -c xfce4-desktop -p $path -s "${../../assets/win95wp.png}"
     done
   '';
 }
