@@ -1,8 +1,5 @@
 { lib, pkgs, ... }: {
-  home.packages = with pkgs; [
-    spleen
-    xarchiver
-  ];
+  home.packages = with pkgs; [ spleen xarchiver ];
 
   xfconf.settings = {
     xsettings = {
@@ -34,7 +31,8 @@
 
     xfce4-panel = {
       "panels/panel-1/icon-size" = 16;
-      "panels/panel-1/plugin-ids" = [ 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 ];
+      "panels/panel-1/plugin-ids" =
+        [ 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 ];
       "panels/panel-1/position" = "p=8;x=0;y=0";
       "panels/panel-1/position-locked" = true;
       "panels/panel-1/size" = 26;
@@ -86,21 +84,23 @@
     };
 
     xfce4-desktop = {
-      "backdrop/screen0/monitor0/workspace0/rgba1" = [ 0.000000 0.501961 0.501961 1.000000 ];
-      "backdrop/screen0/monitor0/workspace0/last-image" = "${../../assets/win95wp.png}";
+      "backdrop/screen0/monitor0/workspace0/rgba1" =
+        [ 0.0 0.501961 0.501961 1.0 ];
+      "backdrop/screen0/monitor0/workspace0/last-image" =
+        "${../../assets/win95wp.png}";
     };
   };
 
-  xdg.configFile."autostart/Chicago95 Login Sound.desktop".text = lib.generators.toINI
-    { }
-    {
+  xdg.configFile."autostart/Chicago95 Login Sound.desktop".text =
+    lib.generators.toINI { } {
       "Desktop Entry" = {
         Encoding = "UTF-8";
         Version = "0.9.4";
         Type = "Application";
         Name = "Chicago95 Login Sound";
         Comment = "Plays the Windows 95 startup sound";
-        Exec = "${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i desktop-login";
+        Exec =
+          "${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i desktop-login";
         RunHook = "0";
         StartupNotify = "false";
         Terminal = "false";
@@ -108,9 +108,12 @@
       };
     };
 
-  home.activation.xfconfWallpaper = lib.hm.dag.entryAfter [ "installPackages" ] ''
-    ${pkgs.xfce.xfconf}/bin/xfconf-query -c xfce4-desktop -l | grep last-image | while read path; do
-      ${pkgs.xfce.xfconf}/bin/xfconf-query -c xfce4-desktop -p $path -s "${../../assets/win95wp.png}"
-    done
-  '';
+  home.activation.xfconfWallpaper =
+    lib.hm.dag.entryAfter [ "installPackages" ] ''
+      ${pkgs.xfce.xfconf}/bin/xfconf-query -c xfce4-desktop -l | grep last-image | while read path; do
+        ${pkgs.xfce.xfconf}/bin/xfconf-query -c xfce4-desktop -p $path -s "${
+          ../../assets/win95wp.png
+        }"
+      done
+    '';
 }

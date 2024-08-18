@@ -1,4 +1,4 @@
-{ fetchFromGitHub, stdenv, gtk3 }:
+{ fetchFromGitHub, stdenv, gtk3, }:
 
 stdenv.mkDerivation rec {
   pname = "chicago95";
@@ -31,8 +31,12 @@ stdenv.mkDerivation rec {
 
     install -dm 755 "$out/share/fonts/truetype/ms_sans_serif/"
     cp -dr --no-preserve='ownership' Fonts/* "$out/share/fonts/truetype/"
-    cp -dr --no-preserve='ownership' ${../../assets/micross.ttf} "$out/share/fonts/truetype/ms_sans_serif/"
-    cp -dr --no-preserve='ownership' ${../../assets/MSSansSerif.ttf} "$out/share/fonts/truetype/ms_sans_serif/"
+    cp -dr --no-preserve='ownership' ${
+      ../../assets/micross.ttf
+    } "$out/share/fonts/truetype/ms_sans_serif/"
+    cp -dr --no-preserve='ownership' ${
+      ../../assets/MSSansSerif.ttf
+    } "$out/share/fonts/truetype/ms_sans_serif/"
 
     install -dm 755 "$out/etc/fonts/conf.d/"
     cp -d --no-preserve='ownership' Extras/99-ms-sans-serif-bold.conf "$out/etc/fonts/conf.d/"

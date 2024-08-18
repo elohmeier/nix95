@@ -1,10 +1,5 @@
 let
-  inherit (builtins)
-    listToAttrs
-    replaceStrings
-    stringLength
-    substring
-    ;
+  inherit (builtins) listToAttrs replaceStrings stringLength substring;
 
   removeSuffix =
     # Suffix to remove if it matches
@@ -14,8 +9,7 @@ let
     let
       sufLen = stringLength suffix;
       sLen = stringLength str;
-    in
-    if sufLen <= sLen && suffix == substring (sLen - sufLen) sufLen str then
+    in if sufLen <= sLen && suffix == substring (sLen - sufLen) sufLen str then
       substring 0 (sLen - sufLen) str
     else
       str;
@@ -26,15 +20,10 @@ let
       prefix = stringLength (toString baseDir) + 1;
 
       toPair = path: {
-        name = replaceStrings [ "/" ] [ "-" ] (removeSuffix ".nix" (substring prefix 1000000
-          (toString path)));
+        name = replaceStrings [ "/" ] [ "-" ]
+          (removeSuffix ".nix" (substring prefix 1000000 (toString path)));
         value = path;
       };
-    in
-    listToAttrs (map toPair paths)
-  ;
+    in listToAttrs (map toPair paths);
 
-in
-exposeModules ./. [
-  ./nix95
-]
+in exposeModules ./. [ ./nix95 ]
