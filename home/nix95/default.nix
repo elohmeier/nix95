@@ -3,7 +3,7 @@
 
   xfconf.settings = {
     xsettings = {
-      "Gtk/CursorThemeName" = "Chicago95 Animated Hourglass Cursors";
+      "Gtk/CursorThemeName" = "Chicago95_Animated_Hourglass_Cursors";
       "Gtk/FontName" = "Helvetica 8";
       # "Gtk/FontName" = "MS Sans Serif 8";
       "Gtk/MonospaceFontName" = "Spleen 8x16 Medium 12";

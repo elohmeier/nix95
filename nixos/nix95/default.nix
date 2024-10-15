@@ -1,4 +1,5 @@
-{ lib, pkgs, ... }: {
+{ lib, pkgs, ... }:
+{
 
   services.libinput = {
     enable = lib.mkDefault true;
@@ -19,7 +20,7 @@
       greeters.gtk = {
         cursorTheme = {
           package = pkgs.chicago95;
-          name = "Chicago95 Animated Hourglass Cursors";
+          name = "Chicago95_Animated_Hourglass_Cursors";
         };
         iconTheme = {
           package = pkgs.chicago95;
