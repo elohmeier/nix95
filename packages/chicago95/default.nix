@@ -1,4 +1,8 @@
-{ fetchFromGitHub, stdenv, gtk3, }:
+{
+  fetchFromGitHub,
+  stdenv,
+  gtk3,
+}:
 
 stdenv.mkDerivation rec {
   pname = "chicago95";
@@ -10,6 +14,17 @@ stdenv.mkDerivation rec {
     rev = "bdf5cf36a16102aaac297f3de887c601c2b1146f";
     hash = "sha256-1TW3bUZOUB6AGZ4zC274YpDg6t/UfZFEuDCHqtbw2oU=";
   };
+
+  postPatch = ''
+    # rm unlinked icons
+    rm Icons/Chicago95/apps/22/org.gnome.seahorse.Application.png
+    rm Icons/Chicago95-tux/apps/16/google-chrome-unstable.svg
+    rm Icons/Chicago95-tux/apps/22/google-chrome-unstable.svg
+    rm Icons/Chicago95-tux/apps/32/google-chrome-unstable.svg
+    rm Icons/Chicago95-tux/apps/256/google-chrome-unstable.svg
+    rm Icons/Chicago95-tux/apps/48/google-chrome-unstable.svg
+    rm Icons/Chicago95-tux/apps/24/google-chrome-unstable.svg
+  '';
 
   dontBuild = true;
 
@@ -31,12 +46,8 @@ stdenv.mkDerivation rec {
 
     install -dm 755 "$out/share/fonts/truetype/ms_sans_serif/"
     cp -dr --no-preserve='ownership' Fonts/* "$out/share/fonts/truetype/"
-    cp -dr --no-preserve='ownership' ${
-      ../../assets/micross.ttf
-    } "$out/share/fonts/truetype/ms_sans_serif/"
-    cp -dr --no-preserve='ownership' ${
-      ../../assets/MSSansSerif.ttf
-    } "$out/share/fonts/truetype/ms_sans_serif/"
+    cp -dr --no-preserve='ownership' ${../../assets/micross.ttf} "$out/share/fonts/truetype/ms_sans_serif/"
+    cp -dr --no-preserve='ownership' ${../../assets/MSSansSerif.ttf} "$out/share/fonts/truetype/ms_sans_serif/"
 
     install -dm 755 "$out/etc/fonts/conf.d/"
     cp -d --no-preserve='ownership' Extras/99-ms-sans-serif-bold.conf "$out/etc/fonts/conf.d/"
